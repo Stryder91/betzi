@@ -6,11 +6,15 @@ async function main() {
   console.log("Deploying contracts with the account:", deployer.address);
 
   const Token = await hre.ethers.getContractFactory("Token");
-  const instance = await Token.deploy(5200 * 10^18);
+  const instance_token = await Token.deploy(5200 * 10^18);
 
-  await instance.deployed();
+  await instance_token.deployed();
+  console.log("Instance_token deployed to:", instance_token.address);
 
-  console.log("Token deployed to:", instance.address);
+  const Poolzi = await hre.ethers.getContractFactory("Poolzi");
+  const instance_pool = await Poolzi.deploy('Bubble pool');
+  await instance_pool.deployed();
+  console.log("instance_pool deployed to:", instance_pool.address);
 }
 
 main()
