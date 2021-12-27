@@ -15,8 +15,13 @@ import { jsInt } from '../utils/helpers'
 export default function Home() {
 
   const [contract, setContract] = useState();
-  const [supply, setSupply] = useState();
-  const [balance, setBalance] = useState();
+  const [supply, setSupply] = useState(0);
+  const [balance, setBalance] = useState(0);
+  const [bet, setBet] = useState({
+    currentPool: 0,
+    myShare: 0
+  });
+  const [currentPool, setCurrentPool] = useState(0);
 
   const [bet1, setBet1] = useState(0);
   const [bet2, setBet2] = useState(0);
@@ -24,7 +29,6 @@ export default function Home() {
   useEffect(async () => {
     const contract = await connectToTokenContract();
     setContract(contract);
-    _getTkAddr();
     _getSupply(contract);
     _getBalance(contract);
   }, []);
@@ -56,18 +60,25 @@ export default function Home() {
       console.log("CONTRACT", contract);
       // const account = await getAccount();
       // await contract.approve(CONTRACT_POOL_ADDRESS, utils.parseEther(bet1));
-      const placeBet = await contract.placeBets("2", 3874, utils.parseEther(bet1));
+      const placeBet = await contract.placeBets("2", 3874, bet1);
       console.log("placeBet", placeBet);
     }
   }
 
-  async function _getTkAddr() {
+  async function _getPool() {
     const contract = await connectToPoolContract();
-    const addr = await contract.getTokenAddress();
-    console.log("ADDR", addr);
+    let bal = jsInt(await contract.getPool(2));
+    setBet({...bet, currentPool: bal});
+  }
+  
+  async function _getmyShareInPool() {
+    const contract = await connectToPoolContract();
+    const account = await getAccount();
+    const myBet = _getMyBets();
+    console.log("My SHARE", currentPool, _getMyBets());
   }
 
-  async function _getBet() {
+  async function _getAllBets() {
     const contract = await connectToPoolContract();
     const actualBet = await contract.getBet("2");
     const account = await getAccount();
@@ -75,22 +86,43 @@ export default function Home() {
     console.log("getting bets...", actualBet);
     actualBet.map(bet => {
       console.log(bet.better, account, bet.better == account);
-      if (bet.better == account) {
-        const amount = jsInt(bet.amount);
-        const teamId = jsInt(bet.teamId);
-        const id = jsInt(bet.id);
-        const myBet = {
-          id,
-          better: account,
-          amount, teamId
-        }
-        myBets.push(myBet);
+      // Pour l'instant on voit tout
+      // if (bet.better == account) {
+      const amount = jsInt(bet.amount);
+      const teamId = jsInt(bet.teamId);
+      const id = jsInt(bet.id);
+      const myBet = {
+        id,
+        better: bet.better,
+        amount, teamId
       }
+      myBets.push(myBet);
+      // }
     });
     console.log("ACTUAL", myBets);
     return myBets;
   }
-  console.log(bet1, bet2);
+
+  async function _getMyBets() {
+    await _getPool()
+    const contract = await connectToPoolContract();
+    const allBets = await contract.getBet("2");
+    const account = await getAccount();
+    let myBets = 0;
+    allBets.map(bet => {
+      if (bet.better == account) {
+        myBets += jsInt(bet.amount);
+      }
+    });
+
+    const currentPool = bet.currentPool;
+    console.log("coucou", currentPool, myBets, (currentPool / myBets));
+
+    myBets = `${(currentPool / myBets).toFixed(2)}%`; 
+    setBet({...bet, myShare: myBets});
+  }
+
+  console.log("BET", bet);
   return (
     <div className={styles.container}>
       <Head>
@@ -104,6 +136,7 @@ export default function Home() {
         </h1>
         <p>Supply is : {supply}</p>
         <p>My balance is : {balance} </p>
+        <p>Pool : {bet.currentPool} and my share : {bet.myShare}</p>
         <div className='flex'>
           <div className='card'>
             <div className="mb-4">
@@ -124,8 +157,9 @@ export default function Home() {
         </div>
         <div className='mt-5'>
           <button onClick={() => _placeBet()} className='bg-green-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full m-auto'>Bet</button>
-          <button onClick={() => _getBet()} className='bg-pink-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full m-auto'>Get a bet</button>
-          <button onClick={() => _transfer()} className='bg-green-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full m-auto'>Transfer</button>
+          <button onClick={() => _getAllBets()} className='bg-pink-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full m-auto'>Get all bets</button>
+          <button onClick={() => _getmyShareInPool()} className='bg-green-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full m-auto'>get Share</button>
+          <button onClick={() => _getPool()} className='bg-yellow-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full m-auto'>get Pool</button>
         </div>
       </main>
     </div>

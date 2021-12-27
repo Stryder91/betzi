@@ -14,14 +14,7 @@ contract Token is ERC20 {
         _mint(msg.sender, _initialSupply);
     }
 
-    // function transfer(address _to, uint _amount) external {
-    //     require(balances[msg.sender] >= _amount, 'Not enough tokens');
-    //     balances[msg.sender] -= _amount;
-    //     balances[_to] += _amount;
-    // }
-
-    // function balanceOf(address _account) external view returns (uint) {
-    //     return balances[_account];
-    // }
-
+    function depositToken(uint _amount) public {
+        transferFrom(msg.sender, address(this), _amount); 
+    }
 }

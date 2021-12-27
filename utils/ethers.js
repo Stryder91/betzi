@@ -3,11 +3,11 @@ import Token from '../artifacts/contracts/Token.sol/Token.json';
 import Poolzi from '../artifacts/contracts/Poolzi.sol/Poolzi.json';
 
 // Testnet
-const CONTRACT_TOKEN_ADDRESS = '0x635edc183072f5EcbDC872C00F7A065E9cf26283';
+const CONTRACT_TOKEN_ADDRESS = '0x877780200FecC69c40E7B1Da6198FC32Dd93e08B';
 const CONTRACT_TOKEN_ABI = Token.abi;
 
 //Testnet
-export const CONTRACT_POOL_ADDRESS = '0x2C7480bb9Ddd8C1F724E413DE6714790cC83bA96';
+export const CONTRACT_POOL_ADDRESS = '0x7525452a60d9D39C050cf7d4F3290a1cd5B57AbB';
 const CONTRACT_POOL_ABI = Poolzi.abi;
 
 export const connectToTokenContract = async () => {
