@@ -1,11 +1,13 @@
-import { ethers } from 'ethers'
+import { ethers, utils } from 'ethers'
 import Token from '../artifacts/contracts/Token.sol/Token.json';
 import Poolzi from '../artifacts/contracts/Poolzi.sol/Poolzi.json';
 
-const CONTRACT_TOKEN_ADDRESS = '0x34eeb86c3a2e017A897b173929105FbA4E24639c';
+// Testnet
+const CONTRACT_TOKEN_ADDRESS = '0x635edc183072f5EcbDC872C00F7A065E9cf26283';
 const CONTRACT_TOKEN_ABI = Token.abi;
 
-const CONTRACT_POOL_ADDRESS = '0x9e0d24375959d40484d37be29A54E84f3ef6a4d3';
+//Testnet
+export const CONTRACT_POOL_ADDRESS = '0x2C7480bb9Ddd8C1F724E413DE6714790cC83bA96';
 const CONTRACT_POOL_ABI = Poolzi.abi;
 
 export const connectToTokenContract = async () => {
@@ -30,7 +32,7 @@ export const connectToPoolContract = async () => {
     return contract;
 }
 
-export const getProviderSigned = async () => {
+export const getProviderSigned_token = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
@@ -63,7 +65,8 @@ export const getAccount = async () => {
     try {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts'});
         const account = handleAccountsChanged(accounts)
-        return account;
+        // utils.getAddress to return mixCase and not only lowercase..
+        return utils.getAddress(account);
     } catch (error) {
         if (error.code === 4001) {
             alert('Please connect to metamask to continue')

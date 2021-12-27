@@ -12,7 +12,7 @@ async function main() {
   console.log("Instance_token deployed to:", instance_token.address);
 
   const Poolzi = await hre.ethers.getContractFactory("Poolzi");
-  const instance_pool = await Poolzi.deploy('Bubble pool');
+  const instance_pool = await Poolzi.deploy('Bubble pool', instance_token.address);
   await instance_pool.deployed();
   console.log("instance_pool deployed to:", instance_pool.address);
 }
