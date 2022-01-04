@@ -1,0 +1,165 @@
+{
+    "id": 6136,
+    "name": "IEM Katowice 2022",
+    "logo": "https://img-cdn.hltv.org/eventlogo/-tCAE4lhriejiElcDnJPWG.png?ixlib=java-2.1.0&s=cbc432d9c0a84bc81d7b763747ac42ff",
+    "dateStart": 1645095600000,
+    "dateEnd": 1645959600000,
+    "prizePool": "$972,000",
+    "location": {
+        "name": "Katowice, Poland",
+        "code": "PL"
+    },
+    "numberOfTeams": 16,
+    "teams": [
+        {
+            "name": "Natus Vincere",
+            "id": 4608,
+            "reasonForParticipation": "Road to Katowice EU",
+            "rankDuringEvent": 1
+        },
+        {
+            "name": "Gambit",
+            "id": 6651,
+            "reasonForParticipation": "Road to Katowice EU",
+            "rankDuringEvent": 2
+        },
+        {
+            "name": "Vitality",
+            "id": 9565,
+            "reasonForParticipation": "Road to Katowice EU",
+            "rankDuringEvent": 3
+        },
+        {
+            "name": "G2",
+            "id": 5995,
+            "reasonForParticipation": "Road to Katowice EU",
+            "rankDuringEvent": 4
+        },
+        {
+            "name": "Heroic",
+            "id": 7175,
+            "reasonForParticipation": "Road to Katowice EU",
+            "rankDuringEvent": 5
+        },
+        {
+            "name": "Virtus.pro",
+            "id": 5378,
+            "reasonForParticipation": "Road to Katowice EU",
+            "rankDuringEvent": 7
+        },
+        {
+            "name": "FURIA",
+            "id": 8297,
+            "reasonForParticipation": "Road to Katowice NA",
+            "rankDuringEvent": 10
+        },
+        {
+            "name": "Liquid",
+            "id": 5973,
+            "reasonForParticipation": "Road to Katowice NA",
+            "rankDuringEvent": 221
+        }
+    ],
+    "prizeDistribution": [
+        {
+            "place": "1st",
+            "prize": "$400,000"
+        },
+        {
+            "place": "2nd",
+            "prize": "$180,000"
+        },
+        {
+            "place": "3-4th",
+            "prize": "$80,000"
+        },
+        {
+            "place": "3-4th",
+            "prize": "$80,000"
+        },
+        {
+            "place": "5-6th",
+            "prize": "$40,000"
+        },
+        {
+            "place": "5-6th",
+            "prize": "$40,000"
+        },
+        {
+            "place": "7-8th",
+            "prize": "$24,000"
+        },
+        {
+            "place": "7-8th",
+            "prize": "$24,000"
+        },
+        {
+            "place": "9-12th",
+            "prize": "$16,000"
+        },
+        {
+            "place": "9-12th",
+            "prize": "$16,000"
+        },
+        {
+            "place": "9-12th",
+            "prize": "$16,000"
+        },
+        {
+            "place": "9-12th",
+            "prize": "$16,000"
+        },
+        {
+            "place": "13-16th",
+            "prize": "$10,000"
+        },
+        {
+            "place": "13-16th",
+            "prize": "$10,000"
+        },
+        {
+            "place": "13-16th",
+            "prize": "$10,000"
+        },
+        {
+            "place": "13-16th",
+            "prize": "$10,000"
+        }
+    ],
+    "relatedEvents": [
+        {
+            "name": "IEM Katowice 2021",
+            "id": 5552
+        },
+        {
+            "name": "IEM Katowice 2022 Play-In",
+            "id": 6219
+        }
+    ],
+    "formats": [
+        {
+            "type": "Group stage",
+            "description": "Double elimination Bo3  - Group winners advance to playoff semi-finals, while 2nd and 3rd placed teams go to the quarter-finals."
+        },
+        {
+            "type": "Playoffs",
+            "description": "Single elimination Bo3 Grand final Bo5"
+        }
+    ],
+    "mapPool": [
+        "de_dust2",
+        "de_mirage",
+        "de_inferno",
+        "de_nuke",
+        "de_overpass",
+        "de_vertigo",
+        "de_ancient"
+    ],
+    "highlights": [],
+    "news": [
+        {
+            "name": "Vitality, Virtus.pro round out IEM Katowice 2022 EPT invites",
+            "link": "/news/32954/vitality-virtuspro-round-out-iem-katowice-2022-ept-invites"
+        }
+    ]
+}

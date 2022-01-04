@@ -1,12 +1,12 @@
 //SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.4;
+pragma solidity ^0.8;
 
 import '@openzeppelin/contracts/access/Ownable.sol';
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+// import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract Poolzi {
-    address private owner;
+contract Poolzi is Ownable {
+    using SafeMath for uint256;
     string private name;
     uint private betId;
     // address private tokenContract;
@@ -24,11 +24,13 @@ contract Poolzi {
     // match id => amount in that pool
     mapping(uint => uint) private matchPools;
 
+    // Array of all match_id 
+    uint[] private allMatchIds;
+
     // sc balance
     uint public sc_pool;
 
     constructor(string memory _name, address _tokenContract) {
-       owner = msg.sender; 
        name = _name;
        betId = 0;
        tokenContract = IERC20(_tokenContract);
@@ -46,11 +48,13 @@ contract Poolzi {
         bets[_matchId].push(bet);
         sc_pool += _amount;
         matchPools[_matchId] += _amount;
+
+        allMatchIds.push(_matchId);
         return false;
     }
 
     function depositTokenPool(uint _amount) public {
-        tokenContract.transfer(address(this), _amount);
+        tokenContract.transferFrom(msg.sender, address(this), _amount);
     }
 
     // should be only owner
@@ -61,6 +65,10 @@ contract Poolzi {
     // get pool
     function getPool(uint _matchId) public view returns(uint) {
         return matchPools[_matchId];
+    }
+
+    function getAllPools() public view returns(uint[] memory){
+        return allMatchIds;
     }
 
     function getContractBalance() public view returns(uint) {
@@ -90,3 +98,24 @@ for (uint i = 0; i < addressRegistryCount; i++) {
 }
 return ret;
 } */
+
+interface IERC20 {
+    function totalSupply() external view returns (uint);
+
+    function balanceOf(address account) external view returns (uint);
+
+    function transfer(address recipient, uint amount) external returns (bool);
+
+    function allowance(address owner, address spender) external view returns (uint);
+
+    function approve(address spender, uint amount) external returns (bool);
+
+    function transferFrom(
+        address sender,
+        address recipient,
+        uint amount
+    ) external returns (bool);
+
+    event Transfer(address indexed from, address indexed to, uint value);
+    event Approval(address indexed owner, address indexed spender, uint value);
+}

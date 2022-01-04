@@ -19,6 +19,12 @@ a {
   box-sizing: border-box;
 }
 
+.header {
+  background-color: #353b48;
+  color: white;
+  box-shadow: 3px 3px 5px silver;
+  border: none;
+}
 .card {
   margin: 1rem;
   padding: 1.5rem;
@@ -29,5 +35,10 @@ a {
   transition: color 0.15s ease, border-color 0.15s ease;
   max-width: 300px;
   box-shadow: 5px 5px 5px silver;
+}
+.bet-card {
+  box-shadow: 5px 5px 5px silver;
+  padding: 20px 30px;
+  border-radius: 10px;
 }
 

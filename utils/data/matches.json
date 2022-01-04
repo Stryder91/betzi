@@ -1,0 +1,62 @@
+[
+    {
+        "id": 2353861,
+        "date": 1641312000000,
+        "stars": 1,
+        "team1": {
+            "name": "Eternal Fire Academy",
+            "id": 11458
+        },
+        "team2": {
+            "name": "MOUZ NXT",
+            "id": 11176
+        },
+        "format": "bo1",
+        "live": false
+    },
+    {
+        "id": 2353862,
+        "date": 1641316200000,
+        "stars": 1,
+        "team1": {
+            "name": "MOUZ NXT",
+            "id": 11176
+        },
+        "team2": {
+            "name": "Eternal Fire Academy",
+            "id": 11458
+        },
+        "format": "bo1",
+        "live": false
+    },
+    {
+        "id": 2353865,
+        "date": 1641398400000,
+        "stars": 1,
+        "team1": {
+            "name": "fnatic Rising",
+            "id": 11195
+        },
+        "team2": {
+            "name": "Young Ninjas",
+            "id": 10960
+        },
+        "format": "bo1",
+        "live": false
+    },
+    {
+        "id": 2353866,
+        "date": 1641402600000,
+        "stars": 1,
+        "team1": {
+            "name": "Young Ninjas",
+            "id": 10960
+        },
+        "team2": {
+            "name": "fnatic Rising",
+            "id": 11195
+        },
+        "format": "bo1",
+        "live": false
+    }
+]
