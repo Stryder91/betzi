@@ -1,0 +1,254 @@
+[
+    {
+        "id": 2353605,
+        "stars": 4,
+        "date": 1639948063000,
+        "team1": {
+            "name": "Gambit",
+            "logo": "https://img-cdn.hltv.org/teamlogo/pNV-lVdpvYZIkDwHdEXXg-.svg?ixlib=java-2.1.0&s=8b557b5b4d283208976340ef1bc44c76"
+        },
+        "team2": {
+            "name": "Natus Vincere",
+            "logo": "https://img-cdn.hltv.org/teamlogo/9iMirAi7ArBLNU8p3kqUTZ.svg?ixlib=java-2.1.0&s=4dd8635be16122656093ae9884675d0c"
+        },
+        "result": {
+            "team1": 1,
+            "team2": 2
+        },
+        "format": "bo3"
+    },
+    {
+        "id": 2353604,
+        "stars": 5,
+        "date": 1639928142000,
+        "team1": {
+            "name": "Vitality",
+            "logo": "https://img-cdn.hltv.org/teamlogo/GAlByJtDTnkgbb9p_71SUL.png?ixlib=java-2.1.0&w=50&s=2838cd78a5ebb5c9fea4c485908e9dbb"
+        },
+        "team2": {
+            "name": "Natus Vincere",
+            "logo": "https://img-cdn.hltv.org/teamlogo/9iMirAi7ArBLNU8p3kqUTZ.svg?ixlib=java-2.1.0&s=4dd8635be16122656093ae9884675d0c"
+        },
+        "result": {
+            "team1": 0,
+            "team2": 2
+        },
+        "format": "bo3"
+    },
+    {
+        "id": 2353603,
+        "stars": 2,
+        "date": 1639860848000,
+        "team1": {
+            "name": "Natus Vincere",
+            "logo": "https://img-cdn.hltv.org/teamlogo/9iMirAi7ArBLNU8p3kqUTZ.svg?ixlib=java-2.1.0&s=4dd8635be16122656093ae9884675d0c"
+        },
+        "team2": {
+            "name": "Liquid",
+            "logo": "https://img-cdn.hltv.org/teamlogo/JMeLLbWKCIEJrmfPaqOz4O.svg?ixlib=java-2.1.0&s=c02caf90234d3a3ebac074c84ba1ea62"
+        },
+        "result": {
+            "team1": 2,
+            "team2": 0
+        },
+        "format": "bo3"
+    },
+    {
+        "id": 2353602,
+        "stars": 4,
+        "date": 1639850937000,
+        "team1": {
+            "name": "Gambit",
+            "logo": "https://img-cdn.hltv.org/teamlogo/pNV-lVdpvYZIkDwHdEXXg-.svg?ixlib=java-2.1.0&s=8b557b5b4d283208976340ef1bc44c76"
+        },
+        "team2": {
+            "name": "Vitality",
+            "logo": "https://img-cdn.hltv.org/teamlogo/GAlByJtDTnkgbb9p_71SUL.png?ixlib=java-2.1.0&w=50&s=2838cd78a5ebb5c9fea4c485908e9dbb"
+        },
+        "result": {
+            "team1": 2,
+            "team2": 0
+        },
+        "format": "bo3"
+    },
+    {
+        "id": 2353601,
+        "stars": 2,
+        "date": 1639779075000,
+        "team1": {
+            "name": "Astralis",
+            "logo": "https://img-cdn.hltv.org/teamlogo/9bgXHp-oh1oaXr7F0mTGmd.svg?ixlib=java-2.1.0&s=f567161ab183001be33948b98c4b2067"
+        },
+        "team2": {
+            "name": "Liquid",
+            "logo": "https://img-cdn.hltv.org/teamlogo/JMeLLbWKCIEJrmfPaqOz4O.svg?ixlib=java-2.1.0&s=c02caf90234d3a3ebac074c84ba1ea62"
+        },
+        "result": {
+            "team1": 0,
+            "team2": 2
+        },
+        "format": "bo3"
+    },
+    {
+        "id": 2353600,
+        "stars": 5,
+        "date": 1639769287000,
+        "team1": {
+            "name": "Natus Vincere",
+            "logo": "https://img-cdn.hltv.org/teamlogo/9iMirAi7ArBLNU8p3kqUTZ.svg?ixlib=java-2.1.0&s=4dd8635be16122656093ae9884675d0c"
+        },
+        "team2": {
+            "name": "G2",
+            "logo": "https://img-cdn.hltv.org/teamlogo/zFLwAELOD15BjJSDMMNBWQ.png?ixlib=java-2.1.0&w=50&s=affb583e6716d8ee904826992255cc4b"
+        },
+        "result": {
+            "team1": 2,
+            "team2": 1
+        },
+        "format": "bo3"
+    },
+    {
+        "id": 2353597,
+        "stars": 5,
+        "date": 1639695215000,
+        "team1": {
+            "name": "G2",
+            "logo": "https://img-cdn.hltv.org/teamlogo/zFLwAELOD15BjJSDMMNBWQ.png?ixlib=java-2.1.0&w=50&s=affb583e6716d8ee904826992255cc4b"
+        },
+        "team2": {
+            "name": "Vitality",
+            "logo": "https://img-cdn.hltv.org/teamlogo/GAlByJtDTnkgbb9p_71SUL.png?ixlib=java-2.1.0&w=50&s=2838cd78a5ebb5c9fea4c485908e9dbb"
+        },
+        "result": {
+            "team1": 0,
+            "team2": 2
+        },
+        "format": "bo3"
+    },
+    {
+        "id": 2353596,
+        "stars": 2,
+        "date": 1639685855000,
+        "team1": {
+            "name": "Liquid",
+            "logo": "https://img-cdn.hltv.org/teamlogo/JMeLLbWKCIEJrmfPaqOz4O.svg?ixlib=java-2.1.0&s=c02caf90234d3a3ebac074c84ba1ea62"
+        },
+        "team2": {
+            "name": "Gambit",
+            "logo": "https://img-cdn.hltv.org/teamlogo/pNV-lVdpvYZIkDwHdEXXg-.svg?ixlib=java-2.1.0&s=8b557b5b4d283208976340ef1bc44c76"
+        },
+        "result": {
+            "team1": 1,
+            "team2": 2
+        },
+        "format": "bo3"
+    },
+    {
+        "id": 2353599,
+        "stars": 3,
+        "date": 1639670857000,
+        "team1": {
+            "name": "NIP",
+            "logo": "https://img-cdn.hltv.org/teamlogo/-ttGATBV_P_HcZazxNNtIb.png?ixlib=java-2.1.0&w=50&s=ba94f7812d1f47183a83f3f34ab959eb"
+        },
+        "team2": {
+            "name": "Astralis",
+            "logo": "https://img-cdn.hltv.org/teamlogo/9bgXHp-oh1oaXr7F0mTGmd.svg?ixlib=java-2.1.0&s=f567161ab183001be33948b98c4b2067"
+        },
+        "result": {
+            "team1": 1,
+            "team2": 2
+        },
+        "format": "bo3"
+    },
+    {
+        "id": 2353598,
+        "stars": 3,
+        "date": 1639603188000,
+        "team1": {
+            "name": "Natus Vincere",
+            "logo": "https://img-cdn.hltv.org/teamlogo/9iMirAi7ArBLNU8p3kqUTZ.svg?ixlib=java-2.1.0&s=4dd8635be16122656093ae9884675d0c"
+        },
+        "team2": {
+            "name": "Heroic",
+            "logo": "https://img-cdn.hltv.org/teamlogo/ffSPDr5mbWSKI4yruyfVtx.svg?ixlib=java-2.1.0&s=2b0a91cf4a31e6eec7a5928b10465f32"
+        },
+        "result": {
+            "team1": 2,
+            "team2": 0
+        },
+        "format": "bo3"
+    },
+    {
+        "id": 2353595,
+        "stars": 3,
+        "date": 1639592328000,
+        "team1": {
+            "name": "Vitality",
+            "logo": "https://img-cdn.hltv.org/teamlogo/GAlByJtDTnkgbb9p_71SUL.png?ixlib=java-2.1.0&w=50&s=2838cd78a5ebb5c9fea4c485908e9dbb"
+        },
+        "team2": {
+            "name": "Astralis",
+            "logo": "https://img-cdn.hltv.org/teamlogo/9bgXHp-oh1oaXr7F0mTGmd.svg?ixlib=java-2.1.0&s=f567161ab183001be33948b98c4b2067"
+        },
+        "result": {
+            "team1": 2,
+            "team2": 0
+        },
+        "format": "bo3"
+    },
+    {
+        "id": 2353594,
+        "stars": 4,
+        "date": 1639584278000,
+        "team1": {
+            "name": "G2",
+            "logo": "https://img-cdn.hltv.org/teamlogo/zFLwAELOD15BjJSDMMNBWQ.png?ixlib=java-2.1.0&w=50&s=affb583e6716d8ee904826992255cc4b"
+        },
+        "team2": {
+            "name": "NIP",
+            "logo": "https://img-cdn.hltv.org/teamlogo/mbY2YeFKUAbL9NyO6ab7-c.png?ixlib=java-2.1.0&w=50&s=33901dc1e88dc81e479574095806fcb9"
+        },
+        "result": {
+            "team1": 2,
+            "team2": 1
+        },
+        "format": "bo3"
+    },
+    {
+        "id": 2353593,
+        "stars": 3,
+        "date": 1639520081000,
+        "team1": {
+            "name": "Gambit",
+            "logo": "https://img-cdn.hltv.org/teamlogo/pNV-lVdpvYZIkDwHdEXXg-.svg?ixlib=java-2.1.0&s=8b557b5b4d283208976340ef1bc44c76"
+        },
+        "team2": {
+            "name": "Heroic",
+            "logo": "https://img-cdn.hltv.org/teamlogo/ffSPDr5mbWSKI4yruyfVtx.svg?ixlib=java-2.1.0&s=2b0a91cf4a31e6eec7a5928b10465f32"
+        },
+        "result": {
+            "team1": 2,
+            "team2": 0
+        },
+        "format": "bo3"
+    },
+    {
+        "id": 2353592,
+        "stars": 2,
+        "date": 1639507961000,
+        "team1": {
+            "name": "Natus Vincere",
+            "logo": "https://img-cdn.hltv.org/teamlogo/9iMirAi7ArBLNU8p3kqUTZ.svg?ixlib=java-2.1.0&s=4dd8635be16122656093ae9884675d0c"
+        },
+        "team2": {
+            "name": "Liquid",
+            "logo": "https://img-cdn.hltv.org/teamlogo/JMeLLbWKCIEJrmfPaqOz4O.svg?ixlib=java-2.1.0&s=c02caf90234d3a3ebac074c84ba1ea62"
+        },
+        "result": {
+            "team1": 1,
+            "team2": 2
+        },
+        "format": "bo3"
+    }
+]

@@ -1,8 +1,14 @@
 import { ethers } from "ethers";
 
-export const jsInt = (bn) => {
-  return parseInt(ethers.utils.formatUnits(bn, 0));
+export const jsInt = bn => {
+  // return parseInt(ethers.utils.formatUnits(bn, 0));
+  return ethers.utils.formatEther(bn);
 }
+
+export const toWei = nb => {
+  return ethers.utils.parseEther(nb);
+}
+
 
 export const formatDate = timestamp => {
   let humanDate = new Intl.DateTimeFormat('fr-FR', { 

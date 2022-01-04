@@ -2,15 +2,16 @@
 pragma solidity ^0.8;
 
 import '@openzeppelin/contracts/access/Ownable.sol';
+import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 // import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract Poolzi is Ownable {
+contract Poolzi is ERC20, Ownable {
     using SafeMath for uint256;
-    string private name;
+    uint _initialSupply = 5000 * (10**18);
     uint private betId;
     // address private tokenContract;
-    IERC20 public tokenContract;
+    // IERC20 public tokenContract;
 
     struct Bet {
         uint id;
@@ -30,10 +31,11 @@ contract Poolzi is Ownable {
     // sc balance
     uint public sc_pool;
 
-    constructor(string memory _name, address _tokenContract) {
-       name = _name;
+    constructor()
+    ERC20("Bubble Token", "BBT") {
        betId = 0;
-       tokenContract = IERC20(_tokenContract);
+       // tokenContract = IERC20(_tokenContract);
+       _mint(msg.sender, _initialSupply);
     }
 
     function placeBets(uint _matchId, uint _teamId, uint _amount) public returns(bool){
@@ -50,11 +52,13 @@ contract Poolzi is Ownable {
         matchPools[_matchId] += _amount;
 
         allMatchIds.push(_matchId);
+        transfer(address(this), _amount); 
         return false;
     }
 
-    function depositTokenPool(uint _amount) public {
-        tokenContract.transferFrom(msg.sender, address(this), _amount);
+    function depositTokenPool(uint _amount) public returns(bool){
+        transfer(address(this), _amount);
+        return true;
     }
 
     // should be only owner
@@ -71,17 +75,9 @@ contract Poolzi is Ownable {
         return allMatchIds;
     }
 
-    function getContractBalance() public view returns(uint) {
-        return address(this).balance;
-    }
-
-    function getBalance(address _addr) public view returns(uint) {
-        return tokenContract.balanceOf(_addr);
-    }
-
-    function getTokenAddress() public view returns(IERC20) {
-        return tokenContract;
-    }
+    // function getTokenAddress() public view returns(IERC20) {
+    //     return tokenContract;
+    // }
 
 }
 // function getOneBet(uint _matchId) public view returns(Bet memory) {
@@ -98,24 +94,3 @@ for (uint i = 0; i < addressRegistryCount; i++) {
 }
 return ret;
 } */
-
-interface IERC20 {
-    function totalSupply() external view returns (uint);
-
-    function balanceOf(address account) external view returns (uint);
-
-    function transfer(address recipient, uint amount) external returns (bool);
-
-    function allowance(address owner, address spender) external view returns (uint);
-
-    function approve(address spender, uint amount) external returns (bool);
-
-    function transferFrom(
-        address sender,
-        address recipient,
-        uint amount
-    ) external returns (bool);
-
-    event Transfer(address indexed from, address indexed to, uint value);
-    event Approval(address indexed owner, address indexed spender, uint value);
-}

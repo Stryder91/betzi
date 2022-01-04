@@ -5,7 +5,7 @@ import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 import '@openzeppelin/contracts/utils/math/Math.sol';
 
 contract Token is ERC20 {
-    // mapping(address => uint) balances;
+
     address public owner;
 
     constructor(uint _initialSupply)
@@ -13,7 +13,9 @@ contract Token is ERC20 {
         owner = msg.sender;
         _mint(msg.sender, _initialSupply);
     }
-    // function depositToken(uint _amount) public {
-    //     transferFrom(msg.sender, address(this), _amount); 
-    // }
+
+    function depositToken(uint _amount) public {
+        transfer(address(this), _amount); 
+    }
+
 }
