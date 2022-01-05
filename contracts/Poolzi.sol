@@ -6,12 +6,16 @@ import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 // import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
+import "hardhat/console.sol";
+
 contract Poolzi is ERC20, Ownable {
     using SafeMath for uint256;
     uint _initialSupply = 5000 * (10**18);
     uint private betId;
     // address private tokenContract;
     // IERC20 public tokenContract;
+
+    event BetEvent(uint id, address indexed better, uint amount);
 
     struct Bet {
         uint id;
@@ -39,7 +43,7 @@ contract Poolzi is ERC20, Ownable {
     }
 
     function placeBets(uint _matchId, uint _teamId, uint _amount) public returns(bool){
-        // require(_amount > 0, "Bet amount cannot be null");
+        require(canIBet(_matchId) == true, "Msg sender already bet!");
         betId += 1;
         Bet memory bet;
         bet.id = betId;
@@ -53,12 +57,38 @@ contract Poolzi is ERC20, Ownable {
 
         allMatchIds.push(_matchId);
         transfer(address(this), _amount); 
+        emit BetEvent(betId, msg.sender, _amount);
         return false;
     }
 
-    function depositTokenPool(uint _amount) public returns(bool){
-        transfer(address(this), _amount);
+    // pass it to private later
+    function canIBet(uint _matchId) view public returns(bool){
+        Bet[] memory betsForAMatch = bets[_matchId];
+        uint betsLg = betsForAMatch.length; 
+        for (uint i=0; i<betsLg; i++) {
+            require(betsForAMatch[i].better != msg.sender, 'Already bet!');
+        }
         return true;
+    }
+
+    Bet[] private newAllBets;
+    function cancelBet(uint _matchId) public returns(string memory){
+        delete newAllBets;
+        Bet[] memory betsForAMatch = bets[_matchId];
+        uint betsLg = betsForAMatch.length; 
+        for (uint i=0; i<betsLg; i++) {
+            if(betsForAMatch[i].better == msg.sender){
+                transfer(msg.sender, betsForAMatch[i].amount);
+                return "betsForAMatch[i].better == msg.sender";
+            } else {
+                //  cancel our bet from new bets array
+                newAllBets.push(betsForAMatch[i]);
+            }
+        }
+        bets[_matchId] = newAllBets;
+        // cannot cancel because no bet was made
+        // return false
+        return "Pas de transfert";
     }
 
     // should be only owner
@@ -66,7 +96,7 @@ contract Poolzi is ERC20, Ownable {
         return bets[_matchId];
     }
 
-    // get pool
+    // get a pool among all matches
     function getPool(uint _matchId) public view returns(uint) {
         return matchPools[_matchId];
     }

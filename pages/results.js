@@ -20,12 +20,6 @@ export default function Results() {
   const [supply, setSupply] = useState(0);
   const [balance, setBalance] = useState(0);
 
-  const [betAmount, setBettingAmount] = useState({
-    matchId: 0,
-    team1: 0,
-    team2: 0
-  })
-
   useEffect(async () => {
     const contract = await connectToTokenContract();
     setContract(contract);
