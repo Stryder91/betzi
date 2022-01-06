@@ -1,15 +1,15 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8;
 
-import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 // import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 import "hardhat/console.sol";
 
-contract Poolzi is ERC20, Ownable {
+contract Poolzi is ERC20 {
     using SafeMath for uint256;
+    address private owner;
     uint _initialSupply = 5000 * (10**18);
     uint private betId;
     // address private tokenContract;
@@ -37,12 +37,13 @@ contract Poolzi is ERC20, Ownable {
 
     constructor()
     ERC20("Bubble Token", "BBT") {
-       betId = 0;
-       // tokenContract = IERC20(_tokenContract);
-       _mint(msg.sender, _initialSupply);
+        owner = msg.sender;
+        betId = 0;
+        // tokenContract = IERC20(_tokenContract);
+        _mint(msg.sender, _initialSupply);
     }
 
-    function placeBets(uint _matchId, uint _teamId, uint _amount) public returns(bool){
+    function placeBets(uint _matchId, uint _teamId, uint _amount) public payable returns(bool){
         require(canIBet(_matchId) == true, "Msg sender already bet!");
         betId += 1;
         Bet memory bet;
@@ -72,13 +73,16 @@ contract Poolzi is ERC20, Ownable {
     }
 
     Bet[] private newAllBets;
-    function cancelBet(uint _matchId) public returns(string memory){
+    function cancelBet(uint _matchId) public payable returns(string memory){
         delete newAllBets;
         Bet[] memory betsForAMatch = bets[_matchId];
         uint betsLg = betsForAMatch.length; 
         for (uint i=0; i<betsLg; i++) {
             if(betsForAMatch[i].better == msg.sender){
-                transfer(msg.sender, betsForAMatch[i].amount);
+                console.log("In if");
+                require(balanceOf(address(this))>= 10, 'Contract doesnot have that amount');
+                payable(msg.sender).transfer(10);
+                // transfer(msg.sender, 10 * 10**18);
                 return "betsForAMatch[i].better == msg.sender";
             } else {
                 //  cancel our bet from new bets array
@@ -103,6 +107,18 @@ contract Poolzi is ERC20, Ownable {
 
     function getAllPools() public view returns(uint[] memory){
         return allMatchIds;
+    }
+
+    function getSCBalance() public view returns(uint) {
+        return address(this).balance;
+    }
+
+    function Etlui() public view returns(uint) {
+        return balanceOf(address(this));
+    }
+
+    function whoIsOwner() public view returns(address) {
+        return owner;
     }
 
     // function getTokenAddress() public view returns(IERC20) {

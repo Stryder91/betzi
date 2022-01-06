@@ -47,11 +47,17 @@ describe("Test Poolzi", function () {
     console.log("Look at the pool : ", jsInt(whatPool));
     
     console.log("-----------------------------");
+    const Myowner = await poolzi.whoIsOwner();
+    console.log("Owner: ", Myowner, owner.address);
     console.log("Cancel the Bet");
+    console.log("Balance of contract address(this).balance: ", jsInt(await poolzi.getSCBalance()));
+    console.log("Balance of contract balanceOf(address(this)): ", jsInt(await poolzi.Etlui()));
+    console.log("Balance of contract withBalanceOf: ", jsInt(await poolzi.balanceOf(poolzi.address)));
+
     await poolzi.cancelBet(MATCH_ID);
     console.log("Balance of owner after cancel : ", jsInt(await poolzi.balanceOf(owner.address)));
 
-    console.log("Balance of contract now: ", jsInt(await poolzi.balanceOf(poolzi.address)));
+    console.log("Balance of contract after: ", jsInt(await poolzi.balanceOf(poolzi.address)));
 
     console.log("Look at the pool at the end: ", jsInt(await poolzi.getPool(MATCH_ID)));
   });
@@ -61,6 +67,7 @@ describe("Test Poolzi", function () {
     const AMOUNT_TO_TRANSFER = '42';
     const ownerBalance = jsInt(await poolzi.balanceOf(owner.address));
     console.log("Balance of owner before transfer : ", ownerBalance);
+
 
     await poolzi.transfer(addr1.address, toWei(AMOUNT_TO_TRANSFER));
     const addr1Bal = jsInt(await poolzi.balanceOf(addr1.address));
