@@ -9,7 +9,6 @@ export const toWei = nb => {
   return ethers.utils.parseEther(nb);
 }
 
-
 export const formatDate = timestamp => {
   let humanDate = new Intl.DateTimeFormat('fr-FR', { 
     year: 'numeric', 
