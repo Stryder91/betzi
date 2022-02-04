@@ -28,19 +28,20 @@ export const Header = () => {
     },
   ]
 
-  return <nav className='header py-4 px-6 prim flex justify-between'>
+  return <nav className='header py-4 px-6 flex justify-between'>
     <div className='flex'>
       <Link href='/'>
-        <div className='mr-10 hand-cursor'>
+        <div className='mr-10 cursor-pointer'>
+          coucou
           {/* <Image src={logo} alt="logo" width="80" height="80"/> */}
         </div>
       </Link>
     </div>
-    <div className='flex right-side-header'>
+    <div className='flex'>
       <div className='lg:hidden'>
         <DDown onlyMobile={true} navItem={navItem} />
       </div>
-      <div className='hidden lg:block lg:flex'>
+      <div className='hidden lg:flex lg:items-center'>
         {navItem.map((item, i) => {
           return <Link href={item.url} key={i}>
             <a className='mr-6'> {item.name} </a>
