@@ -10,7 +10,8 @@ import { amountToPercentage, formatDate, jsInt, toWei } from '../utils/helpers'
 
 import allMatchesData_ from '../utils/data/matches.json';
 import { getMyBalance, getPool_forAMatch, getSCBalance, getTotalSupply } from '../utils/pool_contract';
-import { Btn } from '../components/button';
+import { Btn } from '../components/Button';
+import { BetFrame } from '../components/BetFrame';
 
 export default function AllMatches() {
 
@@ -109,37 +110,27 @@ export default function AllMatches() {
         {
           matches && matches.length > 0 ?
           matches.map(m => {
-            return <div className='bet-card flex flex-wrap'>
+            return <div className='card flex flex-wrap'>
               <div className='w-1/2 m-auto text-center'>
                 <p> {m.team1.name} vs {m.team2.name} </p>
                 <p> Start : {formatDate(m.date)}</p>
-                <button onClick={() => _testAlreadyBet(m.id)}>Test Deposit</button>
+                {/* <button onClick={() => _testAlreadyBet(m.id)}>Test Deposit</button> */}
               </div>
               <div className='flex w-3/4 m-auto flex justify-between'>
-                <div className='card'>
-                  <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="bet1">
-                    {m.team1.name}
-                    </label>
-                    <input
-                      onChange={e => setBettingAmount({...betAmount, matchId:m.id, team1: e.target.value})}
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="bet1" type="number" placeholder="0"/>
-                    <button onClick={() => _placeBet(m.id, m.team1.id, 1)} className='bg-green-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full m-auto'>Bet</button>
-                  </div>
-                </div>
-                <div className='card'>
-                  <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="bet2">
-                    {m.team2.name}
-                    </label>
-                    <input
-                      onChange={e => setBettingAmount({...betAmount, matchId:m.id, team2: e.target.value})}
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="bet2" type="number" placeholder="0"/>
-                    <Btn text="Bet" color="green" cb={() => _placeBet(m.id, m.team1.id, 2)}/>
-                  </div>
-                </div>
+                <BetFrame 
+                  m={m}
+                  OneOrTwo={1}
+                  onChangeCb={e => setBettingAmount({...betAmount, matchId:m.id, team1: e.target.value})}
+                  onSubmitCb={() => _placeBet(m.id, m.team1.id, 1)}
+                />
+                <BetFrame 
+                  m={m}
+                  OneOrTwo={2}
+                  onChangeCb={e => setBettingAmount({...betAmount, matchId:m.id, team1: e.target.value})}
+                  onSubmitCb={() => _placeBet(m.id, m.team1.id, 2)}
+                />
               </div>
-              <div>
+              <div className='meta-card'>
                 <p>Match id : {m.id}</p>
                 <p>Format: {m.format}</p>
               </div>
@@ -155,6 +146,17 @@ export default function AllMatches() {
 	);
 }
 
+{/* <div className='bet-frame'>
+<div className="mb-4">
+  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="bet1">
+  {m.team1.name}
+  </label>
+  <input
+    onChange={e => setBettingAmount({...betAmount, matchId:m.id, team1: e.target.value})}
+    className="shadow appearance-none border rounded w-1/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="bet1" type="number" placeholder="0"/>
+  <Btn text="Bet" color="green" cb={() => _placeBet(m.id, m.team1.id, 1)}/>
+</div>
+</div> */}
     // const contract = await connectToPoolContract();
     // const allPoolsBN = await contract.getAllPools();
     // const allPools = allPoolsBN.map(bn => jsInt(bn));

@@ -1,0 +1,19 @@
+ {
+        "id": 2353861,
+        "date": 1641312000000,
+        "stars": 1,
+        "team1": {
+            "name": "Eternal Fire Academy",
+            "id": 11458
+        },
+        "team2": {
+            "name": "MOUZ NXT",
+            "id": 11176
+        },
+        "format": "bo1",
+        "live": false,
+        "eventId": 4444,
+        "played": false
+        "poolAmount": 0,
+        "myShare": 0,
+},
