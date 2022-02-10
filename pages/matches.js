@@ -12,6 +12,7 @@ import allMatchesData_ from '../utils/data/matches.json';
 import { getMyBalance, getPool_forAMatch, getSCBalance, getTotalSupply } from '../utils/pool_contract';
 import { Btn } from '../components/Button';
 import { BetFrame } from '../components/BetFrame';
+import { Card } from '../components/Card';
 
 export default function AllMatches() {
 
@@ -29,12 +30,12 @@ export default function AllMatches() {
   });
 
   useEffect(async () => {
-    const contract = await connectToPoolContract();
-    _setContract(contract);
-    _setSupply(await getTotalSupply(contract));
-    _setBalance(await getMyBalance(contract));
-    _setSCBalance(await getSCBalance(contract));
-    _setPoolInMatch()
+    // const contract = await connectToPoolContract();
+    // _setContract(contract);
+    // _setSupply(await getTotalSupply(contract));
+    // _setBalance(await getMyBalance(contract));
+    // _setSCBalance(await getSCBalance(contract));
+    // _setPoolInMatch()
   }, []);
 
   // 1 

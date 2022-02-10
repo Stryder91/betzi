@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { Card } from '../components/Card'
 import { Event } from '../components/Event'
 import '../styles/Home.module.css'
 import AllMatches from './matches'
@@ -12,6 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className='flex justify-around'>
+        <Card title="Katowice 2022"/>
         <Event title="Katowice 2022"/>
         <Event title="Katowice 2021"/>
       </div>
