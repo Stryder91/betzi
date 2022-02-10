@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 import {
-  connectToPoolContract,
+  connectToContract_READONLY,
   getAccount,
-  getProviderSigned_pool,
+  connectToContract_RW,
 } from '../utils/ethers'
 import { amountToPercentage, formatDate, jsInt, toWei } from '../utils/helpers'
 
@@ -30,18 +30,18 @@ export default function AllMatches() {
   });
 
   useEffect(async () => {
-    // const contract = await connectToPoolContract();
-    // _setContract(contract);
-    // _setSupply(await getTotalSupply(contract));
-    // _setBalance(await getMyBalance(contract));
-    // _setSCBalance(await getSCBalance(contract));
-    // _setPoolInMatch()
+    const contract = await connectToContract_READONLY();
+    _setContract(contract);
+    _setSupply(await getTotalSupply(contract));
+    _setBalance(await getMyBalance(contract));
+    _setSCBalance(await getSCBalance(contract));
+    _setPoolInMatch()
   }, []);
 
   // 1 
   async function _getPoolandShare(match_id) {
     const poolandShare = {pool: 0, share: 0};
-    const contract = await connectToPoolContract();
+    const contract = await connectToContract_READONLY();
     const actualPool = await getPool_forAMatch(contract, match_id);
     const actualShare = await _getmyShareInPool(contract, match_id, actualPool);
     poolandShare =  {
@@ -75,7 +75,7 @@ export default function AllMatches() {
     setAllMatches(allMatches);
   }
   async function _cancelBet(match_id) {
-    const contract = await getProviderSigned_pool();
+    const contract = await connectToContract_RW();
     const cancelling = await contract.cancelBet(match_id);
     // cancelling.wait();
     console.log("Cancelling", cancelling);
@@ -86,13 +86,13 @@ export default function AllMatches() {
   }
 
   async function _testDeposit() {
-    const contract = await getProviderSigned_pool();
+    const contract = await connectToContract_RW();
     const transaction = jsInt(await contract.balanceOf('0x4aa715AF47705560d442E08fe8c3a81eF6F8949f'));
   }
 
   // Navi : #3874
   async function _placeBet(match_id, team_id, team_1or2) {
-    const contract = await getProviderSigned_pool();
+    const contract = await connectToContract_RW();
     if (betAmount.team1 && betAmount.matchId == match_id && team_1or2 == 1){
       await contract.placeBets(match_id, team_id, toWei(betAmount.team1));
     } else if (betAmount.team2 && betAmount.matchId == match_id && team_1or2 == 2){
@@ -105,19 +105,19 @@ export default function AllMatches() {
 
 	return(
 		<main className={styles.main}>
-			<p>Supply is : {supply}</p>
+			<p>Total supply is : {supply}</p>
 			<p>My balance is : {balance} </p>
       <p>Contract balance is : {contract_balance}</p>
         {
           matches && matches.length > 0 ?
           matches.map(m => {
-            return <div className='card flex flex-wrap'>
-              <div className='w-1/2 m-auto text-center'>
-                <p> {m.team1.name} vs {m.team2.name} </p>
-                <p> Start : {formatDate(m.date)}</p>
-                {/* <button onClick={() => _testAlreadyBet(m.id)}>Test Deposit</button> */}
-              </div>
-              <div className='flex w-3/4 m-auto flex justify-between'>
+            return <div>
+              <Card 
+                title={`${m.team1.name} vs ${m.team2.name}`} 
+                date={`Start : ${formatDate(m.date)}`}
+                id={m.id}
+                format={m.format}
+                >
                 <BetFrame 
                   m={m}
                   OneOrTwo={1}
@@ -130,11 +130,7 @@ export default function AllMatches() {
                   onChangeCb={e => setBettingAmount({...betAmount, matchId:m.id, team1: e.target.value})}
                   onSubmitCb={() => _placeBet(m.id, m.team1.id, 2)}
                 />
-              </div>
-              <div className='meta-card'>
-                <p>Match id : {m.id}</p>
-                <p>Format: {m.format}</p>
-              </div>
+              </Card>
               <div className='m-auto text-center'>
                 <p> Pool : {m.poolAmount ? m.poolAmount : 0} and my share : {m.myShare ? amountToPercentage(m.poolAmount, m.myShare) : 0}</p>
                 <Btn text="Cancel my bet" color="green" cb={() => _cancelBet(m.id)}/>
@@ -158,7 +154,7 @@ export default function AllMatches() {
   <Btn text="Bet" color="green" cb={() => _placeBet(m.id, m.team1.id, 1)}/>
 </div>
 </div> */}
-    // const contract = await connectToPoolContract();
+    // const contract = await connectToContract_READONLY();
     // const allPoolsBN = await contract.getAllPools();
     // const allPools = allPoolsBN.map(bn => jsInt(bn));
     // const allPoolsLg = allPools.length;

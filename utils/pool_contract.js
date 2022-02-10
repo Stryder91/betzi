@@ -42,7 +42,7 @@ export const getmyShareInPool = async (contract, match_id, pool) => {
 }
 
 // async function _getAllBets() {
-//     const contract = await connectToPoolContract();
+//     const contract = await connectToContract_READONLY();
 //     const actualBet = await contract.getBet("2");
 //     const account = await getAccount();
 //     const myBets = [];
@@ -66,7 +66,7 @@ export const getmyShareInPool = async (contract, match_id, pool) => {
 //   }
 
 // async function _testAlreadyBet(id) {
-//     const contract = await getProviderSigned_pool();
+//     const contract = await connectToContract_RW();
 //     try {
 //       const response = await contract.checkIfIAlreadyBet(id);
 //       console.log("RESPONSE", response);

@@ -20,16 +20,27 @@ a {
 }
 
 .primary {
-  background-color: #7230FE;
+  background-color: #000000;
+  background-image: linear-gradient(315deg, #000000 0%, #a29bfe 74%);
+  
 }
 .primaryL {
-  background-color: #A77DFF;
+  background-color: #000000;
+  background-image: linear-gradient(315deg, #000000 0%, #a29bfe 74%);
+  
 }
 .secondary {
   background-color: #FE3055;
 }
 .secondaryL {
   background-color: #FF7D94;
+}
+.whitebg {
+  background-color: #fff;
+}
+
+.black {
+  color: #000000;
 }
 
 .mainMain {
@@ -42,8 +53,8 @@ a {
 }
 
 .card {
-  background-color: #A77DFF;
-  color: white !important;
+  background-color: #fff;
+  color: grey !important;
   border-radius: 10px;
   text-align: center;
   padding: 2rem;

@@ -3,10 +3,10 @@ import styles from '../styles/Home.module.css'
 
 import { 
   connectToTokenContract, 
-  connectToPoolContract, 
+  connectToContract_READONLY, 
   getAccount, 
   getProviderSigned_token, 
-  getProviderSigned_pool, 
+  connectToContract_RW, 
   CONTRACT_POOL_ADDRESS
 } from '../utils/ethers'
 import { amountToPercentage, formatDate, jsInt } from '../utils/helpers'
@@ -30,7 +30,7 @@ export default function Results() {
   
   async function _getPoolandShare(match_id) {
     const poolandShare = {pool: 0, share: 0}; 
-    const contract = await connectToPoolContract();
+    const contract = await connectToContract_READONLY();
     const actualPool = await _getPool(contract, match_id);
     const actualShare = await _getmyShareInPool(contract, match_id, actualPool);
     poolandShare =  {
@@ -85,7 +85,7 @@ export default function Results() {
   }
 
   async function _getAllBets() {
-    const contract = await connectToPoolContract();
+    const contract = await connectToContract_READONLY();
     const actualBet = await contract.getBet("2");
     const account = await getAccount();
     const myBets = [];
