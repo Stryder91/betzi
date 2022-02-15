@@ -127,8 +127,8 @@ export default function AllMatches() {
                 <BetFrame 
                   m={m}
                   OneOrTwo={2}
-                  onChangeCb={e => setBettingAmount({...betAmount, matchId:m.id, team1: e.target.value})}
-                  onSubmitCb={() => _placeBet(m.id, m.team1.id, 2)}
+                  onChangeCb={e => setBettingAmount({...betAmount, matchId:m.id, team2: e.target.value})}
+                  onSubmitCb={() => _placeBet(m.id, m.team2.id, 2)}
                 />
               </Card>
               <div className='m-auto text-center'>
