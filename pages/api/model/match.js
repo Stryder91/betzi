@@ -17,8 +17,8 @@ Map
 const matchSchema = new Schema({
   id:  Number,
   date: Date,
-  team1: [{ name: String, id: Number }],
-  team2: [{ name: String, id: Number }],
+  team1: { name: String, id: Number },
+  team2: { name: String, id: Number },
   format:   String,
   played: Boolean,
   live: Boolean

@@ -8,9 +8,8 @@ import Match from './model/match';
 // }
 
 async function handler(req, res) {
-  const allMatches = await Match.find()
-  console.log("allMatches", allMatches);
-  res.status(200).json(allMatches)
+  const allMatches = await Match.find();
+  res.status(200).json(allMatches);
 }
 
 export default connectDB(handler)

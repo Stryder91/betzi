@@ -19,13 +19,8 @@ async function handler(req, res) {
         live: m.live
       })
       await newMatch.save(function(err, data) {
-        if(err) {
-          console.log(err);
-        }
-        else {
-          // res.send("Data inserted");
-          console.log("Data inserted", m.id);
-        }
+        if(err) { console.log(err) }
+        else { console.log("Data inserted", m.id)}
       });
     });
     console.log("Insertion done!");

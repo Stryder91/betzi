@@ -8,7 +8,6 @@ import {
 } from '../utils/ethers'
 import { amountToPercentage, formatDate, jsInt, toWei } from '../utils/helpers'
 
-// import allMatchesData_ from '../utils/data/matches.json';
 import { getMyBalance, getPool_forAMatch, getSCBalance, getTotalSupply } from '../utils/pool_contract';
 import { Btn } from '../components/Button';
 import { BetFrame } from '../components/BetFrame';
@@ -32,19 +31,17 @@ export default function AllMatches() {
 
   useEffect(async () => {
     const allMatches = await axios.get('/api/matches');
-    console.log("allMatches", allMatches);
+    _setPoolInMatch(allMatches);
     const contract = await connectToContract_READONLY();
     _setContract(contract);
     _setSupply(await getTotalSupply(contract));
     _setBalance(await getMyBalance(contract));
     _setSCBalance(await getSCBalance(contract));
-    // _setPoolInMatch()
   }, []);
 
   // 1 
   async function _getPoolandShare(match_id) {
     const poolandShare = {pool: 0, share: 0};
-    const contract = await connectToContract_READONLY();
     const actualPool = await getPool_forAMatch(contract, match_id);
     const actualShare = await _getmyShareInPool(contract, match_id, actualPool);
     poolandShare =  {
@@ -67,15 +64,15 @@ export default function AllMatches() {
     return myBets;
   }
 
-  async function _setPoolInMatch() {
-    const allMatches = allMatchesData_;
+  async function _setPoolInMatch(allMatches) {
     const matchesLg = allMatches.length;
     for (let i=0; i<matchesLg; i++) {
       const myPaS = await _getPoolandShare(allMatches[i].id);
       allMatches[i].poolAmount = myPaS.pool;
       allMatches[i].myShare =  myPaS.share;
     }
-    setAllMatches(allMatches);
+    console.log("allMatches",allMatches.data);
+    setAllMatches(allMatches.data);
   }
   async function _cancelBet(match_id) {
     const contract = await connectToContract_RW();
@@ -120,6 +117,9 @@ export default function AllMatches() {
                 date={`Start : ${formatDate(m.date)}`}
                 id={m.id}
                 format={m.format}
+                pool={m.poolAmount}
+                share={m.myShare}
+                cancel={_cancelBet}
                 >
                 <BetFrame 
                   m={m}
@@ -134,10 +134,6 @@ export default function AllMatches() {
                   onSubmitCb={() => _placeBet(m.id, m.team2.id, 2)}
                 />
               </Card>
-              <div className='m-auto text-center'>
-                <p> Pool : {m.poolAmount ? m.poolAmount : 0} and my share : {m.myShare ? amountToPercentage(m.poolAmount, m.myShare) : 0}</p>
-                <Btn text="Cancel my bet" color="green" cb={() => _cancelBet(m.id)}/>
-              </div>
             </div>
           })
           : 'Loading... '
