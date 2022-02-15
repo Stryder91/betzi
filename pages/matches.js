@@ -8,11 +8,12 @@ import {
 } from '../utils/ethers'
 import { amountToPercentage, formatDate, jsInt, toWei } from '../utils/helpers'
 
-import allMatchesData_ from '../utils/data/matches.json';
+// import allMatchesData_ from '../utils/data/matches.json';
 import { getMyBalance, getPool_forAMatch, getSCBalance, getTotalSupply } from '../utils/pool_contract';
 import { Btn } from '../components/Button';
 import { BetFrame } from '../components/BetFrame';
 import { Card } from '../components/Card';
+import axios from 'axios';
 
 export default function AllMatches() {
 
@@ -30,12 +31,14 @@ export default function AllMatches() {
   });
 
   useEffect(async () => {
+    const allMatches = await axios.get('/api/matches');
+    console.log("allMatches", allMatches);
     const contract = await connectToContract_READONLY();
     _setContract(contract);
     _setSupply(await getTotalSupply(contract));
     _setBalance(await getMyBalance(contract));
     _setSCBalance(await getSCBalance(contract));
-    _setPoolInMatch()
+    // _setPoolInMatch()
   }, []);
 
   // 1 

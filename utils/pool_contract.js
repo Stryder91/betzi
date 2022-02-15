@@ -3,31 +3,48 @@ import { jsInt } from "./helpers";
 
 // Total token supply
 export const getTotalSupply = async (contract) => {
-    const totalSupply = await contract.totalSupply();
-    return jsInt(totalSupply);
+	try {
+		const totalSupply = await contract.totalSupply();
+		return jsInt(totalSupply);
+	} catch (error) {
+		console.log("Error: ", error);
+	}
 } 
 
 // Poolzi - Smart-contract balance
 export const getSCBalance = async (contract) => {
+  try {
     const sc_balance = await contract.balanceOf(CONTRACT_POOL_ADDRESS);
     return jsInt(sc_balance);
+  } catch (error) {
+    console.log("Error: ", error);
+  }
 }
 
 // Current metamask user balance
 export const getMyBalance = async (contract) => {
+  try {
     const account = await getAccount();
     const myBalance = await contract.balanceOf(account);
     return jsInt(myBalance);
+  } catch (error) {
+    console.log("Error: ", error);
+  }
 }
 
 // Get the pool for 1 match according to id.
 export const getPool_forAMatch = async (contract, match_id) => {
+  try {
     let pool_balance = jsInt(await contract.getPool(match_id));
     return pool_balance;
+  } catch (error) {
+    console.log("Error: ", error);
+  }
 }
 
 // only one bet per person
 export const getmyShareInPool = async (contract, match_id, pool) => {
+  try {
     const allBetsForAMatch = await contract.getBet(match_id);
     let myBets = 0;
     const account = await getAccount();
@@ -39,6 +56,10 @@ export const getmyShareInPool = async (contract, match_id, pool) => {
     console.log("_getmyShareInPool", _getmyShareInPool);
     // myBets = `${(pool / myBets).toFixed(2)}%`; 
     return myBets;
+  } catch (error) {
+    console.log("Error: ", error);
+  }
+
 }
 
 // async function _getAllBets() {
