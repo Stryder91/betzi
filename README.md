@@ -22,3 +22,5 @@ npx hardhat node
 node scripts/sample-script.js
 npx hardhat help
 ```
+
+https://ethereum.stackexchange.com/questions/46318/how-can-i-transfer-erc20-tokens-from-a-contract-to-an-user-account/46360

@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 import { ConnectMetamask } from "./ConnectMetamask"
 import { DDown } from '../components/Dropdown'
 
 import Image from 'next/image'
+import { ConnectNetwork } from './ConnectNetwork'
 // import logo from '../public/logo.png'
 
 export const Header = () => {
@@ -19,8 +19,8 @@ export const Header = () => {
       url: "/matches",
     },
     {
-      name: "Roadmap",
-      url: "#roadmap",
+      name: "Results",
+      url: "/results",
     },
     {
       name: "Team",
@@ -47,6 +47,7 @@ export const Header = () => {
             <a className='mr-6'> {item.name} </a>
           </Link>
         })}
+        <ConnectNetwork />
         <ConnectMetamask />
       </div>
     </div>

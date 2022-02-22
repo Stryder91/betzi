@@ -1,5 +1,15 @@
-import { CONTRACT_POOL_ADDRESS, getAccount } from "./ethers";
+import { connectToContract_READONLY, CONTRACT_POOL_ADDRESS, getAccount } from "./ethers";
 import { jsInt } from "./helpers";
+
+
+ // Set up contract total supply of tokens, sc balance, my own balance 
+export const setUpMetadata = async (setSupplyCb, setBalanceCb, setSCBalanceCb) => {
+  const contract = await connectToContract_READONLY();
+  setSupplyCb(await getTotalSupply(contract));
+  setBalanceCb(await getMyBalance(contract));
+  setSCBalanceCb(await getSCBalance(contract));
+}
+
 
 // Total token supply
 export const getTotalSupply = async (contract) => {

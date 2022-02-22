@@ -28,6 +28,8 @@ contract Poolzi is ERC20 {
     mapping(uint => Bet[]) private bets;
     // match id => amount in that pool
     mapping(uint => uint) private matchPools;
+    // user addr => [matchId1, matchId2, matchId3, ...]
+    mapping(address => uint[]) private userBets;
 
     // Array of all match_id 
     uint[] private allMatchIds;
@@ -57,6 +59,7 @@ contract Poolzi is ERC20 {
         matchPools[_matchId] += _amount;
 
         allMatchIds.push(_matchId);
+
         transfer(address(this), _amount); 
         emit BetEvent(betId, msg.sender, _amount);
         return false;
@@ -71,6 +74,22 @@ contract Poolzi is ERC20 {
         }
         return true;
     }
+
+    // function allMyBets() public view returns(Bet[] memory) {
+    //     Bet[] memory allmyBets;
+    //     uint allMLn = allMatchIds.length;
+
+    //     for (uint i=0; i<allMLn; i++) {
+    //         uint betLn = bets[allMatchIds[i]].length;
+    //         Bet memory betzzz = bets[allMatchIds[i]];
+    //         for (uint j=0; j<betLn; j++) {
+    //             if (betzzz.better == msg.sender) {
+    //                 allmyBets.push(betzzz);
+    //             }
+    //         }
+    //     }
+    //     return allmyBets;
+    // }
 
     Bet[] private newAllBets;
     function cancelBet(uint _matchId) public payable returns(string memory){
@@ -100,6 +119,10 @@ contract Poolzi is ERC20 {
         return bets[_matchId];
     }
 
+    function getAllUserBet() public view returns(uint[] memory) {
+        return userBets[msg.sender];
+    }
+
     // get a pool among all matches
     function getPool(uint _matchId) public view returns(uint) {
         return matchPools[_matchId];
@@ -111,10 +134,6 @@ contract Poolzi is ERC20 {
 
     function getSCBalance() public view returns(uint) {
         return address(this).balance;
-    }
-
-    function Etlui() public view returns(uint) {
-        return balanceOf(address(this));
     }
 
     function whoIsOwner() public view returns(address) {
@@ -140,3 +159,5 @@ for (uint i = 0; i < addressRegistryCount; i++) {
 }
 return ret;
 } */
+
+//  ERC20(tracker_0x_address).transferFrom(msg.sender, address(this), tokens);

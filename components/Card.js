@@ -7,6 +7,7 @@ export const Card = ({ id, title, children, date, pool=0, share=0, cancel }) => 
 			<div className="py-4 w-full">
 				<div className="font-bold text-xl mb-2">{title}</div>
 				<p>{date}</p>
+				<p>Match id : {id}</p>
 				<div className="flex flex-wrap justify-center"> {children} </div>
 			</div>
 			<div className="px-6 pt-4 pb-2">
@@ -14,9 +15,13 @@ export const Card = ({ id, title, children, date, pool=0, share=0, cancel }) => 
 					<p>Pool : {pool}</p>
 					<p>Share : {share}</p>
 				</div>
+				{ cancel
+				?
 				<div className='m-auto text-center'>
 					<Btn text="Cancel my bet" color="green" cb={() => cancel(id)}/>
 				</div>
+				:null
+				}
 			</div>
 		</div>
 	);

@@ -8,8 +8,12 @@ import Match from './model/match';
 // }
 
 async function handler(req, res) {
-  const allMatches = await Match.find();
-  res.status(200).json(allMatches);
+  try {
+    const allMatches = await Match.find();
+    res.status(200).json(allMatches);
+  } catch (error) {
+    res.status(500).send({ error: 'failed to fetch data' })
+  }
 }
 
 export default connectDB(handler)

@@ -1,9 +1,11 @@
-import { useState, useEffect, useReducer, createContext } from "react";
+import { useReducer, createContext } from "react";
 import { account } from "./reducers/user";
 
 // initial state
 const initialState = {
   account: "",
+  network: "",
+  welcome: "Welcome"
 };
 
 // create context

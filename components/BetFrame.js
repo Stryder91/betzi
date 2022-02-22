@@ -1,11 +1,12 @@
 import { Btn } from "./Button";
 
-export const BetFrame = ({m, onChangeCb, onSubmitCb}) => {
+export const BetFrame = ({m, OneOrTwo, onChangeCb, onSubmitCb}) => {
 	return(
 		<div className='bet-frame'>
 			<div className="mb-4">
 				<label className="block text-gray-700 text-sm font-bold mb-2">
-					{m.team1.name}
+					<p>{OneOrTwo == 1 ? m.team1.name : m.team2.name}</p>
+					<p>{OneOrTwo == 1 ? m.team1.id : m.team2.id}</p>	
 				</label>
 				<input
 					onChange={onChangeCb}

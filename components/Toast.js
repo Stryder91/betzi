@@ -9,7 +9,8 @@ export const Toast = ({color="green", title="", msg=""}) => {
     setTimeout(() => {
       SetDisplay(false)
     }, 5000);
-  }, [])
+  }, []);
+  
   if (color == "green") {
     color = "green-500"
   } 
