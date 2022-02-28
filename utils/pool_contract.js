@@ -17,7 +17,7 @@ export const getTotalSupply = async (contract) => {
 		const totalSupply = await contract.totalSupply();
 		return jsInt(totalSupply);
 	} catch (error) {
-		console.log("Error: ", error);
+		console.log("Error getTotalSupply : ", error);
 	}
 } 
 
@@ -27,7 +27,7 @@ export const getSCBalance = async (contract) => {
     const sc_balance = await contract.balanceOf(CONTRACT_POOL_ADDRESS);
     return jsInt(sc_balance);
   } catch (error) {
-    console.log("Error: ", error);
+    console.log("Error getSCBalance: ", error);
   }
 }
 
@@ -38,7 +38,7 @@ export const getMyBalance = async (contract) => {
     const myBalance = await contract.balanceOf(account);
     return jsInt(myBalance);
   } catch (error) {
-    console.log("Error: ", error);
+    console.log("Error getMyBalance: ", error);
   }
 }
 
@@ -48,7 +48,7 @@ export const getPool_forAMatch = async (contract, match_id) => {
     let pool_balance = jsInt(await contract.getPool(match_id));
     return pool_balance;
   } catch (error) {
-    console.log("Error: ", error);
+    console.log("Error getPool_forAMatch: ", error);
   }
 }
 
@@ -67,7 +67,7 @@ export const getmyShareInPool = async (contract, match_id, pool) => {
     // myBets = `${(pool / myBets).toFixed(2)}%`; 
     return myBets;
   } catch (error) {
-    console.log("Error: ", error);
+    console.log("Error getmyShareInPool: ", error);
   }
 
 }

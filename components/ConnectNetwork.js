@@ -14,14 +14,5 @@ export const ConnectNetwork = () => {
     _setNetwork(network)
   }, []);
 
-  const _connectToMM = async () => {
-    if (!state.account) {
-      const net = await getAccount(_setAccount);
-      dispatch({
-        type: "SET_NETWORK",
-        payload: net,
-      });
-    } 
-  }
   return <div className='flex items-center'><Btn text={network} cb={getChainNetwork} /></div>
 }

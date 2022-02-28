@@ -47,7 +47,9 @@ export const Header = () => {
             <a className='mr-6'> {item.name} </a>
           </Link>
         })}
-        <ConnectNetwork />
+        <div className='mr-2'>
+          <ConnectNetwork />
+        </div>
         <ConnectMetamask />
       </div>
     </div>
